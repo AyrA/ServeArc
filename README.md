@@ -20,7 +20,7 @@ To facilitate random access, the tar file is decompressed into your temp directo
 
 ## Usage
 
-Command: `SaveArc [/NB] [/AS | /SR ] <file> [file ...]`
+Command: `SaveArc [/NB] [/AS | /SR] <file> [file ...]`
 
 All arguments are optional apart from the first file.
 

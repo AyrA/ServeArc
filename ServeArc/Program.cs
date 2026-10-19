@@ -15,7 +15,7 @@ catch (Exception ex)
 
 if (a.Help || a.ArchiveFiles.Count == 0)
 {
-    Console.WriteLine(@"ServeArc [/NB] [/AS | /SR ] <file> [file ...]
+    Console.WriteLine(@"ServeArc [/NB] [/AS | /SR] <file> [file ...]
 
 Serves files via HTTP directly from the given archives.
 Latter archives take precedence over previous ones on path collisions,
