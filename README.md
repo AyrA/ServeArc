@@ -5,18 +5,27 @@ You can load multiple archives at once in order to browse them simultaneously.
 
 ## Supported archives
 
-ServeArc currently supports zip and tar files.
+For types not supported by .NET internally, ServeArc utilizes 7-zip, allowing almost all 7-zip supported formats to work.
 
-### Zip
+Supported archive types:
 
-Full support (all files and directories)
+	7z, XZ, BZIP2, GZIP, TAR, ZIP, WIM, APFS, AR,
+	ARJ, CAB, CHM, CPIO, CramFS, DMG, EXT, FAT,
+	GPT, HFS, IHEX, ISO, LZH, LZMA, MBR, MSI,
+	NSIS, NTFS, QCOW2, RAR, RPM, SquashFS, UDF,
+	UEFI, VDI, VHD, VHDX, VMDK, XAR, Z
 
-### Tar
+*This list was obtained from the 7-zip homepage,*
+*support for types that can only contain one file (for example bzip2) is not provided.*
 
-Partial support (no support for symbolic links)
+### GZip compressed tar
 
-Tar files are also supported inside a gzip compressed file (`.tar.gz` or `.tgz`).
-To facilitate random access, the tar file is decompressed into your temp directory.
+Due to the abundance of gzip compressed tar files (`.tar.gz` or `.tgz`),
+these archives are directly supported. 
+Note however that this support is provided by extracting the gzip stream to a temporary file,
+which might take a long time for large archives.
+
+*The detection is purely based on the file name extension.*
 
 ## Usage
 
@@ -45,7 +54,8 @@ This argument is similar to `/AS` but will not check if the directory name match
 
 ### Argument `file`
 
-Archive to serve files from. This argument is repeatable.
+Archive to serve files from. This argument is repeatable,
+and archive types can be mixed.
 
 #### File behavior for multiple archives
 
