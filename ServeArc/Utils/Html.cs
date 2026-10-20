@@ -11,7 +11,7 @@ public static class Html
         """;
     private const string HtmlTemplate = "<!DOCTYPE html><html><head><meta charset=\"utf-8\" /><title>{0}</title><style>{1}</style></head><body>{2}{3}</body></html>";
 
-    private const string Footer = "<div id=\"footer\"><hr /><i>Copyright &copy; 2006 - <a href=\"https://github.com/AyrA/ServeArc\" target=\"_blank\">AyrA/ServeArc</a></i></div>";
+    private const string Footer = "<div id=\"footer\"><hr /><i>Copyright &copy; 2026 - <a href=\"https://github.com/AyrA/ServeArc\" target=\"_blank\">AyrA/ServeArc</a></i></div>";
 
     public static string Encode(string s) => HtmlEncoder.Default.Encode(s);
 
