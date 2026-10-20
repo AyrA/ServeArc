@@ -27,11 +27,19 @@ public interface IArchiveHandler : IDisposable
     /// <summary>
     /// Returns the file stream for a file
     /// </summary>
-    /// <param name="dir">Path of the file entry. Always begins with '/'</param>
+    /// <param name="file">Path of the file entry. Always begins with '/'</param>
     /// <returns>
     /// File result if file was found,
     /// null if the request cannot be handled and should be sent to the next handler in the queue
     /// </returns>
     /// <remarks>The stream will be disposed after the request chain ends</remarks>
-    FileResult? GetFile(string dir);
+    FileResult? GetFile(string file);
+
+    /// <summary>
+    /// Method that is called when the call to <see cref="GetFile(string)"/>
+    /// returned a successful result but the stream property was null
+    /// </summary>
+    /// <param name="file">Same argument that was passed into <see cref="GetFile(string)"/></param>
+    /// <param name="target">Stream to write file into</param>
+    Task StreamFile(string file, Stream target);
 }

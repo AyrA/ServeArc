@@ -13,7 +13,7 @@
     },
     "tar": {
       "commandName": "Project",
-      "commandLineArgs": "C:\\temp\\test.tar",
+      "commandLineArgs": "C:\\temp\\ServeArc\\test.tar",
       "launchBrowser": true,
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
@@ -23,7 +23,7 @@
     },
     "zip (multi)": {
       "commandName": "Project",
-      "commandLineArgs": "/SR C:\\temp\\test1.zip C:\\temp\\test2.zip",
+      "commandLineArgs": "/SR C:\\temp\\ServeArc\\test1.zip C:\\temp\\ServeArc\\test2.zip",
       "launchBrowser": true,
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
@@ -33,7 +33,37 @@
     },
     "tar (gzip)": {
       "commandName": "Project",
-      "commandLineArgs": "C:\\temp\\test.tgz",
+      "commandLineArgs": "C:\\temp\\ServeArc\\test.tgz",
+      "launchBrowser": true,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "dotnetRunMessages": true,
+      "applicationUrl": "http://localhost:5140"
+    },
+    "7zip": {
+      "commandName": "Project",
+      "commandLineArgs": "C:\\temp\\ServeArc\\test.7z",
+      "launchBrowser": true,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "dotnetRunMessages": true,
+      "applicationUrl": "http://localhost:5140"
+    },
+    "rar": {
+      "commandName": "Project",
+      "commandLineArgs": "C:\\temp\\ServeArc\\test.rar",
+      "launchBrowser": true,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "dotnetRunMessages": true,
+      "applicationUrl": "http://localhost:5140"
+    },
+    "iso": {
+      "commandName": "Project",
+      "commandLineArgs": "C:\\temp\\ServeArc\\test.iso",
       "launchBrowser": true,
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"

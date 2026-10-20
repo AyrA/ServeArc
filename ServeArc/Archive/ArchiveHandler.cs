@@ -3,8 +3,10 @@
 public static class ArchiveHandler
 {
     private const StringComparison CI = StringComparison.InvariantCultureIgnoreCase;
+
     public static IArchiveHandler OpenFile(string file)
     {
+        //Use the internal decompressors for known types because they support HTTP range requests without creating intermeidate files
         if (file.EndsWith(".zip", CI))
         {
             return new Zip(file);
@@ -17,6 +19,13 @@ public static class ArchiveHandler
         {
             return new Tar(file, true);
         }
-        throw new ArgumentException("Unable to detect supported archive type from given file name", nameof(file));
+        try
+        {
+            return new SevenZip(file);
+        }
+        catch (Exception e)
+        {
+            throw new ArgumentException("Unable to detect supported archive type from given file name", nameof(file), e);
+        }
     }
 }

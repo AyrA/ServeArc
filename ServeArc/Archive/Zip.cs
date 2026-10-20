@@ -59,13 +59,24 @@ internal class Zip : IArchiveHandler
         var ze = entries.FirstOrDefault(m => m.FullName == dir[1..]);
         if (ze != null)
         {
-            return new(ze.Open(), ze.LastWriteTime, ze.Length, null);
+            return new(ze.Open(), ze.LastWriteTime, (ulong)ze.Length, null);
         }
         return null;
     }
 
+    public async Task StreamFile(string file, Stream target)
+    {
+        var f = GetFile(file) ?? throw new KeyNotFoundException();
+        if (f.File == null)
+        {
+            throw new NotSupportedException();
+        }
+        await f.File.CopyToAsync(target);
+    }
+
     public void Dispose()
     {
+        GC.SuppressFinalize(this);
         arc.Dispose();
     }
 }

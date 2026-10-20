@@ -45,6 +45,10 @@ using var proc = app.Services.GetRequiredService<ArchiveProcessor>();
 //Register all archives into the http processing queue
 foreach (var file in a.ArchiveFiles)
 {
+#if DEBUG
+    //Cache busting during debugging
+    proc.UpdateCacheString(DateTimeOffset.UtcNow.Ticks.ToString());
+#endif
     var arc = ArchiveHandler.OpenFile(file);
     if (a.AutoSkipRoot || a.SkipRoot)
     {
@@ -53,7 +57,6 @@ foreach (var file in a.ArchiveFiles)
         {
             logger.LogInformation("Registering {File} as archive, stripping root path '{Root}'", file, root);
             proc.AddArchive(arc, root);
-            proc.UpdateLastModified(File.GetLastWriteTimeUtc(file));
         }
         else
         {
@@ -64,8 +67,8 @@ foreach (var file in a.ArchiveFiles)
     {
         logger.LogInformation("Registering {File} as archive", file);
         proc.AddArchive(arc);
-        proc.UpdateLastModified(File.GetLastWriteTimeUtc(file));
     }
+    proc.UpdateCacheString(file);
 }
 proc.DisableDirectoryBrowsing = a.NoBrowse;
 

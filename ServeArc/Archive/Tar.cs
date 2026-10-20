@@ -71,9 +71,19 @@ internal class Tar : IArchiveHandler
         if (ze?.DataStream != null)
         {
             ze.DataStream.Position = 0;
-            return new(new Utils.StreamWrapper(ze.DataStream), ze.ModificationTime, ze.Length, null);
+            return new(new Utils.StreamWrapper(ze.DataStream), ze.ModificationTime, (ulong)ze.Length, null);
         }
         return null;
+    }
+
+    public async Task StreamFile(string file, Stream target)
+    {
+        var f = GetFile(file) ?? throw new KeyNotFoundException();
+        if (f.File == null)
+        {
+            throw new NotSupportedException();
+        }
+        await f.File.CopyToAsync(target);
     }
 
     public void Dispose()
